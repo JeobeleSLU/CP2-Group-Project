@@ -5,6 +5,9 @@ public class FractionArithmetic { //ito executable class
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Fraction fraction1 = new Fraction();
+        Fraction fraction2 = new Fraction();
+
 
         int choice;
         do { //jhez w/ charles
@@ -25,11 +28,9 @@ public class FractionArithmetic { //ito executable class
              choice = sc.nextInt();
             switch (choice) {
                 case 1: //chaz w/ jhezz
-                    Fraction fraction1 = new Fraction();
                     inputFraction(fraction1);
                     break;
                 case 2: //chaz
-                    Fraction fraction2 = new Fraction();
                     inputFraction(fraction2);
                     break;
                 case 3:
@@ -84,17 +85,17 @@ public class FractionArithmetic { //ito executable class
 
     }
 
-    public static void addAnotherFraction() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Input number of fractions to add: ");
-        int j = sc.nextInt();
-
-        Fraction newFrac = new Fraction();
-
-        for (int i = 1; i <= j; i++) {
-            Fraction fraction = inputFraction ()
-    }
-
-}
+//    public static void addAnotherFraction() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.print("Input number of fractions to add: ");
+//        int j = sc.nextInt();
+//
+//        Fraction newFrac = new Fraction();
+//
+//        for (int i = 1; i <= j; i++) {
+//            Fraction fraction = inputFraction ();
+//    }
+//
+//}
 
 
