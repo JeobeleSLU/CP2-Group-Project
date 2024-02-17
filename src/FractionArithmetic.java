@@ -39,6 +39,7 @@ public class FractionArithmetic { //ito executable class
 
                     break;
                 case 4:
+                    fraction1.subFractions(fraction2);
                     break;
                 case 5:
                     double product = Fraction.multiplyfractions(fraction1, fraction2);
@@ -58,9 +59,9 @@ public class FractionArithmetic { //ito executable class
             }if (choice > 8 || choice <1){
                 System.out.println(choice + " is an INVALID INPUT!");
                 System.out.println("PLEASE INPUT A VALID CHOICE.");
-            }
+            }//replaced loop
         } while (true); //jhez
-//pa ask if pwede gumawa ng method sa main
+
     }
 
     public static void inputFraction(Fraction fraction1) {//jeobele po

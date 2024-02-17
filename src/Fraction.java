@@ -68,7 +68,7 @@ public class Fraction {
         return value1;
     }
     //todo: Debug on how to simplify hehe
-
+    // gumagana na to except sa simplify
     public void add(Fraction other ){
         //checks if the denominator is equal
         boolean check = checkEqualityDenom(this.denominator, other.denominator);
@@ -82,10 +82,12 @@ public class Fraction {
 
             int origNum2 = other.numerator;
             int origDenom2 = other.denominator;
+
         //multiply the left side from the denominator of the right side
             this.numerator =calculateNewNum(origNum, origDenom2);
             this.denominator =calculateNewNum(origdenom, origDenom2);
             System.out.println(other.denominator);
+
         //multiply the right side from the denominator of the left side
             other.numerator = calculateNewNum(origNum2,origdenom);
             other.denominator = calculateNewNum(origDenom2,origdenom);
@@ -98,7 +100,7 @@ public class Fraction {
             this.numerator =simplifyNum(this.numerator, this.denominator) ;
             this.denominator =simplifyDen(tmpNum, this.denominator) ;
 
-            System.out.println(this.numerator+other.numerator+"/"+this.denominator);
+            System.out.println(this.numerator+"/"+this.denominator);
             //restore the original values of the fractions
             this.numerator = origNum;
             this.denominator = origdenom;
@@ -110,12 +112,12 @@ public class Fraction {
 
     }
 
-    private int simplifyNum(int firstNum, int secondNum) {
+    private int simplifyNum(int firstNum, int secondNum) {//pa check if tama -jeo
         int gcd = computeGCD(firstNum , secondNum);
         firstNum /=gcd;
         return firstNum;
     }
-    private int simplifyDen(int firstNum, int secondNum) {
+    private int simplifyDen(int firstNum, int secondNum) {//pa check if tama -jeo
         int gcd = computeGCD(firstNum, secondNum);
         secondNum /=gcd;
         return secondNum;
@@ -127,10 +129,7 @@ public class Fraction {
     }
 
     private boolean checkEqualityDenom(int firstdenom, int seconddenom) {
-        if (firstdenom == seconddenom){
-            return true;
-        }else
-            return false;
+            return firstdenom == seconddenom;
     }
 
     public int subFractions(Fraction other){//hello po //mag eexperiment lng
