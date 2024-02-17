@@ -85,17 +85,17 @@ public class FractionArithmetic { //ito executable class
 
     }
 
-//    public static void addAnotherFraction() {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Input number of fractions to add: ");
-//        int j = sc.nextInt();
-//
-//        Fraction newFrac = new Fraction();
-//
-//        for (int i = 1; i <= j; i++) {
-//            Fraction fraction = inputFraction ();
-//    }
-//
-//}
+    public static void addAnotherFraction() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Input number of fractions to add: ");
+        int j = sc.nextInt();
+
+        Fraction newFrac = new Fraction();
+
+        for (int i = 1; i <= j; i++) {
+            Fraction fraction = inputFraction ();
+    }
+
+}
 
 
