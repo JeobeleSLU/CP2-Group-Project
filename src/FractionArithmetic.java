@@ -31,7 +31,7 @@ public class FractionArithmetic { //ito executable class
                     inputFraction(fraction1);
                     break;
                 case 2: //chaz
-                    inputFraction(fraction2);
+                    inputFraction2(fraction2);
                     break;
                 case 3:
                     fraction1.add(fraction2); // pa check if tama nasa isip ko hehe //same tot
@@ -50,13 +50,16 @@ public class FractionArithmetic { //ito executable class
                     break;
 
                 case 8://jeobele po /charles
+                    System.out.println("Thank you for using this system!");
+                    System.out.println("Exiting....");
                     System.exit(0);
                     break;
-                default: //chaz
-                    System.out.println(choice + " is an INVALID INPUT!");
-                    System.out.println("PLEASE INPUT A VALID CHOICE.");
+
+            }if (choice > 8 || choice <1){
+                System.out.println(choice + " is an INVALID INPUT!");
+                System.out.println("PLEASE INPUT A VALID CHOICE.");
             }
-        } while (choice > 8 || choice < 1); //jhez
+        } while (true); //jhez
 //pa ask if pwede gumawa ng method sa main
     }
 
@@ -69,7 +72,27 @@ public class FractionArithmetic { //ito executable class
         fraction1.setNumerator(firstNumerator);
         int firstDenominator;
 
-        do {
+        do {//todo: Test the loop for this method
+            System.out.print("Enter a denominator: ");
+            firstDenominator= Integer.parseInt(sc.nextLine());
+            if (firstDenominator == 0){
+                System.out.println("A Denominator Can't be zero");
+                System.out.println("Please input another Denominator");
+            }
+        }while(firstDenominator == 0);
+        fraction1.setDenominator(firstDenominator);
+
+    }
+    public static void inputFraction2(Fraction fraction1) {//jeobele po
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a value of fraction 1");
+        System.out.print("Enter a numerator: ");
+        int firstNumerator = Integer.parseInt(sc.nextLine());
+        fraction1.setNumerator(firstNumerator);
+        int firstDenominator;
+
+        do {//todo: Test the loop for this method
             System.out.print("Enter a denominator: ");
             firstDenominator= Integer.parseInt(sc.nextLine());
             if (firstDenominator == 0){
@@ -81,8 +104,6 @@ public class FractionArithmetic { //ito executable class
 
     }
 
-    //todo: Test the loop for this method
-
     }
 
     public static void addAnotherFraction() {
@@ -93,7 +114,7 @@ public class FractionArithmetic { //ito executable class
         Fraction newFrac = new Fraction();
 
         for (int i = 1; i <= j; i++) {
-            Fraction fraction = inputFraction ();
+            Fraction[] fraction = inputFraction ();
     }
 
 }

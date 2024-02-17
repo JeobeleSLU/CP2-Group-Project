@@ -49,7 +49,7 @@ public class Fraction {
     }
 
 
-    private void computeGCD(double finNum, double finDenom){ // nicole
+    private int computeGCD(double finNum, double finDenom){ // nicole
         int rem = 1;
         int value1 = numerator;
         int value2 = denominator;
@@ -59,26 +59,82 @@ public class Fraction {
             value1 = value2;
             value2 = rem;
         } // ang value ng lcd dito is yung value1
-
+        return value1;
     }
 
-    public double getCommonDen(int denominator){
-        double commonden = this.denominator * denominator;
+    public int getCommonDen(int firstDenom, int secondDenom){
+
+        int commonden = this.denominator * denominator;
         return commonden;
     }
+    //todo: Debug on how to simplify hehe
     public void add(Fraction other ){
-        double commonDenominator = getCommonDen(other.denominator);
-        computeGCD(commonDenominator);
-        int newNumerator = this.numerator * ;
-    //return
+        boolean check = checkEqualityDenom(this.denominator, other.denominator);
+        if (check){
+            int newNumerator = this.numerator+ other.numerator;
+            System.out.println(newNumerator+"/"+this.denominator);
+        }else {
+            int origNum = this.numerator;
+            int origdenom = this.denominator;
+
+            int origNum2 = other.numerator;
+            int origDenom2 = other.denominator;
+
+            this.numerator =calculateNewNum(origNum, origDenom2);
+            this.denominator =calculateNewNum(origdenom, origDenom2);
+            System.out.println(other.denominator);
+
+            other.numerator = calculateNewNum(origNum2,origdenom);
+            other.denominator = calculateNewNum(origDenom2,origdenom);
+            System.out.println(other.denominator);
+
+            this.numerator += other.numerator;
+            System.out.println(this.numerator);
+
+            this.numerator =simplifyNum(this.numerator, this.denominator) ;
+            this.denominator =simplifyDen(this.numerator, this.denominator) ;
+
+            System.out.println(this.numerator+other.numerator+"/"+this.denominator);
+
+            this.numerator = origNum;
+            this.denominator = origdenom;
+            other.numerator = origNum;
+            other.denominator = origDenom2;
+
+
+        }
+
+    }
+
+    private int simplifyNum(int firstNum, int secondNum) {
+        int gcd = computeGCD(numerator , denominator);
+        firstNum /=gcd;
+        return firstNum;
+    }
+    private int simplifyDen(int firstNum, int secondNum) {
+        int gcd = computeGCD(numerator , denominator);
+        secondNum /=gcd;
+        return secondNum;
+    }
+
+    private int calculateNewNum(int multiplicand, int multiplier) {
+        System.out.println(multiplicand*multiplier);
+        return multiplicand*multiplier;
+    }
+
+    private boolean checkEqualityDenom(int firstdenom, int seconddenom) {
+        if (firstdenom == seconddenom){
+            return true;
+        }else
+            return false;
     }
 
     public int subFractions(Fraction other){//hello po //mag eexperiment lng
 
 
-        computeGCD(this.denominator);
+        computeGCD(this.numerator, this.denominator);
 
-    //return
+    return 0;
     }
 
 
@@ -88,7 +144,7 @@ public class Fraction {
         //try ko lang
         int num=fraction1.getNumerator()*fraction2.getNumerator();
         int denom=fraction1.getDenominator()*fraction2.getDenominator();
-        computeGCD(num, denom);
+//        computeGCD(num, denom);
         return (num/denom);
     }
 
