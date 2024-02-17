@@ -49,54 +49,57 @@ public class Fraction {
     }
 
 
-    private int computeGCD(double finNum, double finDenom){ // nicole
-        int rem = 1;
-        int value1 = numerator;
-        int value2 = denominator;
-
-        while (rem != 0) {
-            rem = value1 % value2;
-            value1 = value2;
-            value2 = rem;
-        } // ang value ng lcd dito is yung value1
-        return value1;
-    }
-
     public int getCommonDen(int firstDenom, int secondDenom){
 
         int commonden = this.denominator * denominator;
         return commonden;
     }
+
+    private int computeGCD(double finNum, double finDenom){ // nicole
+        int rem = 0;
+        int value1 = numerator;
+        int value2 = denominator;
+
+        do {
+            rem = value1 % value2;
+            value1 = value2;
+            value2 = rem;
+        }while (rem != 0); // ang value ng lcd dito is yung value1
+        return value1;
+    }
     //todo: Debug on how to simplify hehe
 
     public void add(Fraction other ){
+        //checks if the denominator is equal
         boolean check = checkEqualityDenom(this.denominator, other.denominator);
         if (check){
             int newNumerator = this.numerator+ other.numerator;
             System.out.println(newNumerator+"/"+this.denominator);
         }else {
+            //store the original value of the variable
             int origNum = this.numerator;
             int origdenom = this.denominator;
 
             int origNum2 = other.numerator;
             int origDenom2 = other.denominator;
-
+        //multiply the left side from the denominator of the right side
             this.numerator =calculateNewNum(origNum, origDenom2);
             this.denominator =calculateNewNum(origdenom, origDenom2);
             System.out.println(other.denominator);
-
+        //multiply the right side from the denominator of the left side
             other.numerator = calculateNewNum(origNum2,origdenom);
             other.denominator = calculateNewNum(origDenom2,origdenom);
             System.out.println(other.denominator);
-
+        //add the numerators
             this.numerator += other.numerator;
             System.out.println(this.numerator);
-
+            //todo : Fix simplifyNum
+            int tmpNum = this.numerator;
             this.numerator =simplifyNum(this.numerator, this.denominator) ;
-            this.denominator =simplifyDen(this.numerator, this.denominator) ;
+            this.denominator =simplifyDen(tmpNum, this.denominator) ;
 
             System.out.println(this.numerator+other.numerator+"/"+this.denominator);
-
+            //restore the original values of the fractions
             this.numerator = origNum;
             this.denominator = origdenom;
             other.numerator = origNum;
@@ -108,12 +111,12 @@ public class Fraction {
     }
 
     private int simplifyNum(int firstNum, int secondNum) {
-        int gcd = computeGCD(numerator , denominator);
+        int gcd = computeGCD(firstNum , secondNum);
         firstNum /=gcd;
         return firstNum;
     }
     private int simplifyDen(int firstNum, int secondNum) {
-        int gcd = computeGCD(numerator , denominator);
+        int gcd = computeGCD(firstNum, secondNum);
         secondNum /=gcd;
         return secondNum;
     }
