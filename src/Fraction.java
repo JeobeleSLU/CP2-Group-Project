@@ -68,6 +68,7 @@ public class Fraction {
         return commonden;
     }
     //todo: Debug on how to simplify hehe
+
     public void add(Fraction other ){
         boolean check = checkEqualityDenom(this.denominator, other.denominator);
         if (check){

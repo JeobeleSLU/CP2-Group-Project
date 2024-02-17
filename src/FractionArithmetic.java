@@ -72,7 +72,7 @@ public class FractionArithmetic { //ito executable class
         fraction1.setNumerator(firstNumerator);
         int firstDenominator;
 
-        do {//todo: Test the loop for this method
+        do {
             System.out.print("Enter a denominator: ");
             firstDenominator= Integer.parseInt(sc.nextLine());
             if (firstDenominator == 0){
@@ -92,7 +92,7 @@ public class FractionArithmetic { //ito executable class
         fraction1.setNumerator(firstNumerator);
         int firstDenominator;
 
-        do {//todo: Test the loop for this method
+        do {
             System.out.print("Enter a denominator: ");
             firstDenominator= Integer.parseInt(sc.nextLine());
             if (firstDenominator == 0){
