@@ -32,6 +32,7 @@ public class FractionArithmetic { //ito executable class
                     fraction1.inputValues();
                     break;
                 case 2: //chaz
+                    System.out.println("Please input the Values of Fraction 2");
                     fraction2.inputValues();
                     break;
                 case 3:
