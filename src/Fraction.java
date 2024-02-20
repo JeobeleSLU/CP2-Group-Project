@@ -40,7 +40,7 @@ public class Fraction {
     public int getDenominator () {
         return denominator;
     }
-
+//gagi sorry maling class
     public String toString(){ //nicole
         return "Value of Numerator: \nValue of Denominator: ";
     }// tama ba gamit ng \n? I belib yes
@@ -57,7 +57,7 @@ public class Fraction {
         return commonden;
     }
 
-    private int computeGCD(double finNum, double finDenom){ // nicole
+    int computeGCD(double finNum, double finDenom){ // nicole
         int rem = 0;
         int value1 = numerator;
         int value2 = denominator;
@@ -98,14 +98,14 @@ public class Fraction {
             this.numerator += other.numerator;
             System.out.println(this.numerator);
             //todo : Fix simplifyNum
-            int tmpNum = this.numerator;
-            this.numerator =simplifyNum(this.numerator, this.denominator) ;
-            this.denominator =simplifyDen(tmpNum, this.denominator) ;
+//            int tmpNum = this.numerator;
+//            this.numerator =simplifyNum(this.numerator, this.denominator) ;
+//            this.denominator =simplifyDen(tmpNum, this.denominator) ;
 
             System.out.println(this.numerator+"/"+this.denominator);
             //restore the original values of the fractions
             this.numerator = origNum;
-            this.denominator = origdenom;
+            this.denominator = origDenom;
             other.numerator = origNum;
             other.denominator = origDenom2;
 
@@ -157,12 +157,41 @@ public class Fraction {
     public double divideFractions(){
         double reciprocal = (double) denominator / numerator;
 
-        int newNumerator = this.numerator;
-        int newDenominator = this.denominator;
-        double quotient = 0;
-        return quotient;
+        double quot1 = num1 * recipNum2;
+        double quot2 = denom1 * recipDenom2;
+
+        double quotInDec = quot1 / quot2;
+        System.out.println(quot1 + "/" + quot2);
+        return quotInDec;
     }
-    public void inputValues(){//jeobele
+
+    //public void divideFractionsFracForm(Fraction other){
+      //  int num1 = this.numerator;
+       // int denom1 = this.denominator;
+
+        //int recipNum2 = other.denominator;
+       // double recipDenom2 = other.numerator;
+
+       // int quot1 = num1 * recipNum2;
+      //  int quot2 = denom1 * recipDenom2;
+        // int simpNum = simplifyNum(
+
+
+      //  return
+   // }
+
+    public void reduceFraction(Fraction other) { //sam //charles
+            int gcd = computeGCD(this.numerator, this.denominator);
+            this.numerator /= gcd;
+            this.denominator /= gcd;
+
+            gcd = computeGCD(other.numerator, other.denominator);
+            other.numerator /= gcd;
+            other.denominator /= gcd;
+
+    }
+
+    public void inputValues(){//jeobele pwede ba maging 0 < ang denom? //oo pero d pwede 0 // undefined na ata pag zero
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Denominator");
         setNumerator(scanner.nextInt());

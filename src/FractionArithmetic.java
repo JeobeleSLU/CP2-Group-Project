@@ -29,11 +29,11 @@ public class FractionArithmetic { //ito executable class
             switch (choice) {
                 case 1: //chaz w/ jhezz
                     System.out.println("Please input the Values of Fraction 1");
-                    fraction1.inputValues();
+                    fraction1.inputValues();//jeo
                     break;
                 case 2: //chaz
                     System.out.println("Please input the Values of Fraction 2");
-                    fraction2.inputValues();
+                    fraction2.inputValues();//jeo
                     break;
                 case 3:
                     fraction1.add(fraction2); // pa check if tama nasa isip ko hehe //same tot
@@ -44,9 +44,11 @@ public class FractionArithmetic { //ito executable class
                     fraction1.subFractions(fraction2);
                     break;
                 case 5:
-                    double product = Fraction.multiplyfractions(fraction1, fraction2);
-                    break;
+                    fraction1.multiplyFractions(fraction2);
+                    break;//go guys
                 case 6:
+                    System.out.println("Quotient in Decimal: " + fraction1.divideFractions(fraction2));
+                    
                     break;
 
                 case 7:
@@ -67,17 +69,8 @@ public class FractionArithmetic { //ito executable class
 
     }
 }
-//    public static void addAnotherFraction() {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.print("Input number of fractions to add: ");
-//        int j = sc.nextInt();
-//
-//        Fraction newFrac = new Fraction();
-//
-//        for (int i = 1; i <= j; i++) {
-//            Fraction[] fraction = inputFraction ();
-//    }
-//
-//}
+
+
+
 
 
