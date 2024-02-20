@@ -25,13 +25,14 @@ public class FractionArithmetic { //ito executable class
             System.out.println("+------------------------------------------+");
             System.out.print("Enter choice: ");
 
-             choice = sc.nextInt();
+            choice = sc.nextInt();
             switch (choice) {
                 case 1: //chaz w/ jhezz
-                    inputFraction(fraction1);
+                    System.out.println("Please input the Values of Fraction 1");
+                    fraction1.inputValues();
                     break;
                 case 2: //chaz
-                    inputFraction2(fraction2);
+                    fraction2.inputValues();
                     break;
                 case 3:
                     fraction1.add(fraction2); // pa check if tama nasa isip ko hehe //same tot
@@ -56,57 +57,15 @@ public class FractionArithmetic { //ito executable class
                     System.exit(0);
                     break;
 
-            }if (choice > 8 || choice <1){
+            }
+            if (choice > 8 || choice < 1) {
                 System.out.println(choice + " is an INVALID INPUT!");
                 System.out.println("PLEASE INPUT A VALID CHOICE.");
             }//replaced loop
         } while (true); //jhez
 
     }
-
-    public static void inputFraction(Fraction fraction1) {//jeobele po
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter a value of fraction 1");
-        System.out.print("Enter a numerator: ");
-        int firstNumerator = Integer.parseInt(sc.nextLine());
-        fraction1.setNumerator(firstNumerator);
-        int firstDenominator;
-
-        do {
-            System.out.print("Enter a denominator: ");
-            firstDenominator= Integer.parseInt(sc.nextLine());
-            if (firstDenominator == 0){
-                System.out.println("A Denominator Can't be zero");
-                System.out.println("Please input another Denominator");
-            }
-        }while(firstDenominator == 0);
-        fraction1.setDenominator(firstDenominator);
-
-    }
-    public static void inputFraction2(Fraction fraction1) {//jeobele po
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter a value of fraction 1");
-        System.out.print("Enter a numerator: ");
-        int firstNumerator = Integer.parseInt(sc.nextLine());
-        fraction1.setNumerator(firstNumerator);
-        int firstDenominator;
-
-        do {
-            System.out.print("Enter a denominator: ");
-            firstDenominator= Integer.parseInt(sc.nextLine());
-            if (firstDenominator == 0){
-                System.out.println("A Denominator Can't be zero");
-                System.out.println("Please input another Denominator");
-            }
-        }while(firstDenominator == 0);
-        fraction1.setDenominator(firstDenominator);
-
-    }
-
-    }
-
+}
 //    public static void addAnotherFraction() {
 //        Scanner sc = new Scanner(System.in);
 //        System.out.print("Input number of fractions to add: ");

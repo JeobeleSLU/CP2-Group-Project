@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //class file
 public class Fraction {
 
@@ -69,7 +71,7 @@ public class Fraction {
     }
     //todo: Debug on how to simplify hehe
     // gumagana na to except sa simplify
-    public void add(Fraction other ){
+    public void add(Fraction other ){//jeobele
         //checks if the denominator is equal
         boolean check = checkEqualityDenom(this.denominator, other.denominator);
         if (check){
@@ -160,7 +162,21 @@ public class Fraction {
         double quotient = 0;
         return quotient;
     }
+    public void inputValues(){//jeobele
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input Denominator");
+        setNumerator(scanner.nextInt());
+        int tmp;
+        do {
+            System.out.println("Input Denominator");
 
+             tmp = scanner.nextInt();
+             if (tmp == 0){
+                 System.out.println("A Denominator Cannot be Zero");
+             }
+        }while(tmp == 0 );
+        setDenominator(tmp);
+    }
 
 
 }//ask natin sa consultation?
