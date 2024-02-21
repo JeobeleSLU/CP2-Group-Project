@@ -68,6 +68,7 @@ public class FractionArithmetic { //ito executable class
         } while (true); //jhez
 
     }
+    //
 }
 
 

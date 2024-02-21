@@ -109,7 +109,7 @@ public class Fraction {
             other.numerator = origNum;
             other.denominator = origDenom2;
 
-
+//
         }
 
     }
