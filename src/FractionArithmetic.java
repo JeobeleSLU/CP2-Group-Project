@@ -52,6 +52,11 @@ public class FractionArithmetic { //ito executable class
                     break;
 
                 case 7:
+                    fraction1.reduceFraction(fraction1);
+                    fraction1.reduceFraction(fraction2);
+                    // tama ba?????
+                    // reduce is simplest form dba
+
                     break;
 
                 case 8://jeobele po /charles
