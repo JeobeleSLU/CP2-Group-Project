@@ -1,6 +1,6 @@
 
 import java.util.Scanner;
-public class FractionArithmetic {
+public class FractionArithmetic   {
 
     public static void main(String[] args) {
 
@@ -154,7 +154,10 @@ public class FractionArithmetic {
         }while (!isProblematic);
         return choice;
     }
-}
+
+}//todo: Create a MixedFraction Class
+
+
 
 
 
