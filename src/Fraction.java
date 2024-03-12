@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //class file
@@ -177,17 +178,33 @@ public class Fraction {
 
     public void inputValues() {
         Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter value of numerator: ");
-            setNumerator(scanner.nextInt());
-            int tmp;
+            boolean isCorrect = true;
             do {
-                System.out.print("Enter value of denominator: ");
+                try {
+                    System.out.print("Enter value of numerator: ");
+                    setNumerator(Integer.parseInt(scanner.next()));
+                    isCorrect = false;
 
-                tmp = scanner.nextInt();
-                if (tmp == 0) {
-                    System.out.println("A denominator cannot be zero");
+                }catch (NumberFormatException e){
+                    System.out.println("You must enter a valid number!");
+
                 }
-            } while (tmp == 0);
+
+            }while(isCorrect);
+            isCorrect = true;
+            int tmp = 0;
+            do {
+                try {
+                    System.out.print("Enter value of denominator: ");
+                    tmp = Integer.parseInt(scanner.next());
+                    if (tmp == 0) {
+                        System.out.println("A denominator cannot be zero");
+                    }
+                    isCorrect = false;
+                }catch (NumberFormatException e){
+                    System.out.println("Input a valid Number! ");
+                }
+            } while (tmp == 0 && isCorrect );
             setDenominator(tmp);
 
     }

@@ -1,4 +1,5 @@
 
+import java.util.IllegalFormatException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class FractionArithmetic {
@@ -17,7 +18,7 @@ public class FractionArithmetic {
         boolean availopt = false;
         boolean isProblematic = true;
 
-        int choice = 0;
+        int choice =0 ;
 
         do { //loop for showing the menu every after execution of an option
             System.out.println("\n+------------------------------------------+");
@@ -32,6 +33,8 @@ public class FractionArithmetic {
             System.out.println("|     8. Quit                              | ");
             System.out.println("+------------------------------------------+\n");
             System.out.print("Enter choice: ");
+
+            choice = getUserChoice();
 
 
             //switch case to assign corresponding instructions to a specific option or number
@@ -134,6 +137,24 @@ public class FractionArithmetic {
             }
         } while (true);
 
+    }
+
+    private static int getUserChoice() {
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0 ;
+        boolean isCorrect = true;
+        do {
+            try{
+                choice = Integer.parseInt(scanner.next());
+                isCorrect = false;
+
+            }catch (NumberFormatException e){
+                System.out.println("Input a valid number!");
+                System.out.print("Enter Choice: ");
+
+            }
+        }while (isCorrect);
+        return choice;
     }
 }
 
