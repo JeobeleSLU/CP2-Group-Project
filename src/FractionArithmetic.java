@@ -154,8 +154,8 @@ public class FractionArithmetic   {
         }while (!isProblematic);
         return choice;
     }
-
-}//todo: Create a MixedFraction Class
+//ignore Comment
+}
 
 
 
