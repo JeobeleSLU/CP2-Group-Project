@@ -19,129 +19,61 @@ public class Fraction {
     }
 
 
-    public Fraction (int numerator, int denominator){ //nicole w/ jeobel
+    public Fraction (int numerator, int denominator){
         this.numerator = numerator;
         this.denominator = denominator;
     }
 
-    public void setNumerator (int num){ //nicole
+    public void setNumerator (int num){  //for setting value of numerator
         this.numerator = num;
     }
-
-
-    public int getNumerator(){ //   nicole
+    public int getNumerator(){ //for getting value of numerator
         return numerator;
     }
-    public void setDenominator(int den){
-        this.denominator=den;
+    public void setDenominator(int den){ //for setting value of denominator
+        this.denominator = den;
     }
 
-    public int getDenominator () {
+    public int getDenominator () {//for getting value of denominator
         return denominator;
     }
-//gagi sorry maling class
-    public String toString(){ //nicole
-        return "Value of Numerator: \nValue of Denominator: ";
+
+    public String toString(){ //to convert the input values into a string
+        return this.numerator + "/" + this.denominator;
     }
 
 
-    public double toDouble(){
-        return (double) this.numerator / this.denominator;
-    }
+    private int computeGCD(int num, int denom){  //used for simplifying fractions
 
-
-   public int getCommonDen(int firstDenom, int secondDenom){
-
-        int commonden = this.denominator * denominator;
-        return commonden;
-    }
-
-    int computeGCD(double finNum, double finDenom){ // nicole
+        //initialization of variables
         int rem = 0;
-        int value1 = numerator;
-        int value2 = denominator;
+        int value1 = num;
+        int value2 = denom;
 
-        do {
+        do { // loop for getting the GCD between two numbers
             rem = value1 % value2;
             value1 = value2;
             value2 = rem;
-        }while (rem != 0); // ang value ng gcd dito is yung value1
+        }while (rem != 0); //loop will terminate if value of rem is 0 because it means that the GCD is already computed
         return value1;
     }
 
-    //todo: Debug on how to simplify hehe
-    // gumagana na to except sa simplify -  ay gcd pala
-    //
-    public void add(Fraction other){//jeobele
-        //checks if the denominator is equal
-        boolean check = checkEqualityDenom(this.denominator, other.denominator);
-        if (check){
-            int newNumerator = this.numerator+ other.numerator;
-            System.out.println(newNumerator+"/"+this.denominator);
-        }else {
-            //store the original value of the variable
-            int origNum = this.numerator;
-            int origDenom = this.denominator;
-
-            int origNum2 = other.numerator;
-            int origDenom2 = other.denominator;
-
-        //multiply the left side from the denominator of the right side
-            this.numerator =calculateNewNum(origNum, origDenom2);
-            this.denominator =calculateNewNum(origDenom, origDenom2);
-            System.out.println(other.denominator);
-
-        //multiply the right side from the denominator of the left side
-            other.numerator = calculateNewNum(origNum2,origDenom);
-            other.denominator = calculateNewNum(origDenom2,origDenom);
-            System.out.println(other.denominator);
-        //add the numerators
-            this.numerator += other.numerator;
-            System.out.println(this.numerator);
-            //todo : Fix simplifyNum
-//            int tmpNum = this.numerator;
-//            this.numerator =simplifyNum(this.numerator, this.denominator) ;
-//            this.denominator =simplifyDen(tmpNum, this.denominator) ;
-
-            System.out.println(this.numerator+"/"+this.denominator);
-            //restore the original values of the fractions
-            this.numerator = origNum;
-            this.denominator = origDenom;
-            other.numerator = origNum;
-            other.denominator = origDenom2;
-
-//
-        }
-
-    }
-
-    private int simplifyNum(int firstNum, int secondNum) {//pa check if tama -jeo
-        int gcd = computeGCD(firstNum , secondNum);
-        firstNum /=gcd;
-        return firstNum;
-    }
-    private int simplifyDen(int firstNum, int secondNum) {//pa check if tama -jeo
-        int gcd = computeGCD(firstNum, secondNum);
-        secondNum /=gcd;
-        return secondNum;
-    }
-    // ano ung bug dito na sinasabi mo jeobel?
-
-    private int calculateNewNum(int multiplicand, int multiplier) {
-        System.out.println(multiplicand*multiplier);
-        return multiplicand*multiplier;
-    }
-
-    private boolean checkEqualityDenom(int firstDenom, int secondDenom) {
-            return firstDenom == secondDenom;
-    }
-
-    public void subFractions(Fraction other) {//hello po //mag eexperiment lng //josh
+    public Fraction addFraction(Fraction other ) {
+        Fraction nFrac = new Fraction();
         //checks if the denominator is equal
         boolean check = checkEqualityDenom(this.denominator, other.denominator);
         if (check) {
             int newNumerator = this.numerator + other.numerator;
-            System.out.println(newNumerator + "/" + this.denominator);
+            //prints the sum; if the sum is negative, the sum will be printed in the format -(fraction)
+            if(newNumerator < 0){
+                System.out.println("Sum in Fraction: -(" + (newNumerator * -1) + "/" + this.denominator + ")");
+            } else if (this.denominator < 0) {
+                System.out.println("Sum in Fraction: -(" + newNumerator+ "/" + (this.denominator * -1) + ")");
+            } else{
+                System.out.println("Sum in Fraction: " + newNumerator + "/" + this.denominator);
+            }
+
+            nFrac = new Fraction(newNumerator, this.denominator);
         } else {
             //store the original value of the variable
             int origNum = this.numerator;
@@ -153,31 +85,60 @@ public class Fraction {
             //multiply the left side from the denominator of the right side
             this.numerator = calculateNewNum(origNum, origDenom2);
             this.denominator = calculateNewNum(origDenom, origDenom2);
-            System.out.println(other.denominator);
 
             //multiply the right side from the denominator of the left side
             other.numerator = calculateNewNum(origNum2, origDenom);
             other.denominator = calculateNewNum(origDenom2, origDenom);
-            System.out.println(other.denominator);
-            //subtracts the numerators
-            this.numerator -= other.numerator;
-            System.out.println(this.numerator);
-            //todo : Fix simplifyNum
-////            int tmpNum = this.numerator;/
-//          this.numerator = simplifyNum(this.numerator, this.denominator);
-//            this.denominator = simplifyDen(tmpNum, this.denominator);
 
-            System.out.println("The Answer is "+this.numerator + "/" + this.denominator);
+            //add the numerators
+            this.numerator += other.numerator;
+
+            nFrac = new Fraction(this.numerator, this.denominator);
+
             //restore the original values of the fractions
-//            this.numerator = origNum;
-//            this.denominator = origDenom;
-//            other.numerator = origNum;
-//            other.denominator = origDen
+
+            nFrac = new Fraction(this.numerator, this.denominator);
+            returnOrigValues(origNum, origDenom, origNum2, origDenom2, other);
         }
+        return nFrac;
     }
 
 
-    public void multiplyFractions(Fraction other){ // jhez // gumana man to ngay nung nitryko saken haha//
+    public Fraction subFractions(Fraction other) {
+        Fraction nFrac = new Fraction ();
+        //checks if the denominator is equal
+        boolean check = checkEqualityDenom(this.denominator, other.denominator);
+        if (check) {
+            int newNumerator = this.numerator - other.numerator;
+            nFrac = new Fraction(newNumerator, this.denominator);
+        } else {
+            //store the original value of the variable
+            int origNum = this.numerator;
+            int origDenom = this.denominator;
+
+            int origNum2 = other.numerator;
+            int origDenom2 = other.denominator;
+
+            //multiply the left side numerator from the denominator of the right side
+            this.numerator = calculateNewNum(origNum, origDenom2);
+            this.denominator = calculateNewNum(origDenom, origDenom2);
+
+            //multiply the right side numerator from the denominator of the left side
+            other.numerator = calculateNewNum(origNum2, origDenom);
+
+            this.numerator -= other.numerator;
+
+            nFrac = new Fraction(this.numerator, this.denominator);
+
+            //restore the original values of the fractions
+            returnOrigValues(origNum, origDenom, origNum2, origDenom2, other);
+        }
+
+        return nFrac;
+    }
+
+    public Fraction multiplyFractions(Fraction other){ // multiplication process
+        Fraction nFrac = new Fraction();
         int origNum = this.numerator;
         int origDen = this.denominator;
 
@@ -185,112 +146,90 @@ public class Fraction {
         int origDen2 = other.denominator;
 
         //multiply the numerators
-        this.numerator =calculateNNum(origNum, origNum2);
+        this.numerator =calculateNewNum(origNum, origNum2);
         //multiply the denominator
-        this.denominator =calculateNewDen(origDen, origDen2);
-        int calculatedN = this.numerator;
-        int calculatedD = this.denominator;
-        //lowest form
-        int tempNum = this.numerator;
-        this.numerator = simplifyNum(this.numerator, this.denominator);
-        this.denominator = simplifyDen(tempNum, this.denominator);
-        //convert to decimals
-        double dec = calculateDecimals(calculatedN,calculatedD);
+        this.denominator =calculateNewNum(origDen, origDen2);
 
-        System.out.println(this.numerator+"/"+this.denominator + " or " + dec);
+         nFrac = new Fraction(this.numerator, this.denominator);
+
         //restore the original values of the fractions
-        this.numerator = origNum;
-        this.denominator = origDen;
-        other.numerator = origNum;
-        other.denominator = origDen2;
-    }
-    private int calculateNNum(int multiplicand, int multiplier) {
-        System.out.println(multiplicand * multiplier);
-        return multiplicand * multiplier;
-    }
-    private int calculateNewDen(int multiplicand, int multiplier) {
-        System.out.println(multiplicand * multiplier);
-        return multiplicand * multiplier;
+        returnOrigValues(origNum, origDen, origNum2, origDen2,other);
 
-    }
-    private double calculateDecimals(int numerator, int denominator) {
-        System.out.println(numerator/denominator);
-        return (double) numerator / denominator;
+        return nFrac;
     }
 
-
-
-        public double divideFractions(Fraction other){ //chaz
-        // heheheh try ko po muna gawin --- chaz
+    public Fraction divideFractions(Fraction other){
+        Fraction nFrac = new Fraction();
         int num1 = this.numerator;
         int denom1 = this.denominator;
 
-        double recipNum2 = other.denominator;
-        double recipDenom2 = other.numerator;
+        int reciprocalNum = other.denominator;
+        int reciprocalDenom = other.numerator;
 
-        double quot1 = num1 * recipNum2;
-        double quot2 = denom1 * recipDenom2;
+        this.numerator = num1 * reciprocalNum;
+        this.denominator = denom1 * reciprocalDenom;
 
-        double quotInDec = quot1 / quot2;
-        System.out.println(quot1 + "/" + quot2);
-        return quotInDec;
-    }
-
-    //public void divideFractionsFracForm(Fraction other){
-      //  int num1 = this.numerator;
-       // int denom1 = this.denominator;
-
-        //int recipNum2 = other.denominator;
-       // double recipDenom2 = other.numerator;
-
-       // int quot1 = num1 * recipNum2;
-      //  int quot2 = denom1 * recipDenom2;
-        // int simpNum = simplifyNum(
-
-
-      //  return
-   // }
-
-    public void reduceFraction(Fraction other) { //sam //charles
-            int gcd = computeGCD(this.numerator, this.denominator);
-            this.numerator /= gcd;
-            this.denominator /= gcd;
-
-            gcd = computeGCD(other.numerator, other.denominator);
-            other.numerator /= gcd;
-            other.denominator /= gcd;
+        nFrac = new Fraction(this.numerator, this.denominator);
+        returnOrigValues(num1, denom1, reciprocalNum, reciprocalDenom, other);
+        return nFrac;
 
     }
 
-    public void inputValues(){//jeobele pwede ba maging 0 < ang denom? //oo pero d pwede 0 // undefined na ata pag zero
+    public void inputValues() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input Numerator: ");
-        setNumerator(scanner.nextInt());
-        int tmp;
-        do {
-            System.out.println("Input Denominator: ");
+            System.out.print("Enter value of numerator: ");
+            setNumerator(scanner.nextInt());
+            int tmp;
+            do {
+                System.out.print("Enter value of denominator: ");
 
-             tmp = scanner.nextInt();
-             if (tmp == 0){
-                 System.out.println("A Denominator Cannot be Zero");
-             }
-        }while(tmp == 0 );
-        setDenominator(tmp);
+                tmp = scanner.nextInt();
+                if (tmp == 0) {
+                    System.out.println("A denominator cannot be zero");
+                }
+            } while (tmp == 0);
+            setDenominator(tmp);
+
+    }
+    public Fraction reduceFraction() {
+
+        int num = this.numerator;
+        int denom = this.denominator;
+        int gcd = computeGCD(num, denom);
+        this.numerator /= gcd;
+        this.denominator /= gcd;
+
+        Fraction nFrac = new Fraction (this.numerator, this.denominator);
+
+        return nFrac;
     }
 
+//General Methods (used in all operators)
 
+    private int calculateNewNum(int multiplicand, int multiplier) {
+        return multiplicand*multiplier;
+    }
+
+    public void convertToDecimal() {
+        System.out.println((double) this.numerator / this.denominator);
+    }
+
+    private boolean checkEqualityDenom(int firstdenom, int seconddenom) {
+        return firstdenom == seconddenom;
+    }
+
+    private void returnOrigValues (int n1, int d1, int n2, int d2, Fraction other){
+        this.numerator = n1;
+        this.denominator = d1;
+        other.numerator = n2;
+        other.denominator = d2;
+    }
+    public void toStringOutput (){
+        //makes the format: - numerator/denominator
+        if (this.denominator < 0) {
+            System.out.println("-" + this.numerator + "/" + (this.denominator * -1)); ;
+        } else{
+            System.out.println(this.numerator + "/" + this.denominator);
+        }
+    }
 }
-
-//ask natin sa consultation?
-// bale ung menu nandon na sa main? ung pipili ng operation
-// ay gawan din method yon? kasi kung oo, dito yon
-//naririnig ba pag nag voice chat dito?
-//oo pwede pa ata mag video call HAHAHAHAHAHAHA
-//
-//
-// nakita ko lang sa yt
- //ge nagchat na tayo HAHAHAHAHAHAHAH
-//pwede naman mag call try niyo mag join HASHAHa
-//pinindot ko
-//jhez join ka daw
-// gagawa yung add ata
