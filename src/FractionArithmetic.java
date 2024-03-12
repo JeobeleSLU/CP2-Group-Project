@@ -1,10 +1,8 @@
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 public class FractionArithmetic {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
         //initialization of values
         Fraction fraction1 = new Fraction();
@@ -12,12 +10,11 @@ public class FractionArithmetic {
         Fraction toReduce = new Fraction(); //for obtaining simplified output
 
         //for input validation of the menu
-        boolean availfrac1 = false;
-        boolean availfrac2 = false;
-        boolean availopt = false;
-        boolean isProblematic = true;
+        boolean availFrac1 = false;
+        boolean availFrac2 = false;
+        boolean availOpt = false;
 
-        int choice = 0;
+        int choice;
 
         do { //loop for showing the menu every after execution of an option
             System.out.println("\n+------------------------------------------+");
@@ -31,86 +28,90 @@ public class FractionArithmetic {
             System.out.println("|     7. Reduce a fraction                 |");
             System.out.println("|     8. Quit                              | ");
             System.out.println("+------------------------------------------+\n");
-            System.out.print("Enter choice: ");
+
+
+            choice = getUserChoice();
 
 
             //switch case to assign corresponding instructions to a specific option or number
             switch (choice) {
                 case 1:
                     fraction1.inputValues();
-                    availfrac1 = true;
+                    availFrac1 = true;
                     break;
                 case 2:
                     fraction2.inputValues();
-                    availfrac2 = true;
+                    availFrac2 = true;
                     break;
 
                 case 3:
-                    if (availfrac1 == false || availfrac2 == false){ //to check whether there are inputs present in fraction1 and fraction2
+                    if (!availFrac1  || !availFrac2){ //to check whether there are inputs present in fraction1 and fraction2
                         System.out.println("\nNOTE: PLEASE INPUT FIRST THE VALUE OF FRACTIONS 1 AND 2!\n");
                     }else {
-                        System.out.println("Value of fraction 1: " + fraction1.toString());
-                        System.out.println("Value of fraction 2: " + fraction2.toString());
+                        System.out.println("Value of fraction 1: " + fraction1);
+                        System.out.println("Value of fraction 2: " + fraction2);
                         toReduce = fraction1.addFraction(fraction2);
                         System.out.print("Sum in Fraction: ");
                         toReduce.toStringOutput();
                         System.out.print("Sum in Decimal: ");
                         toReduce.convertToDecimal();
-                        availopt = true;
+                        availOpt = true;
                     }
                     break;
                 case 4:
-                    if (availfrac1 == false || availfrac2 == false){
+                    if (!availFrac1 || !availFrac2){
 
                         System.out.println("\nNOTE: PLEASE INPUT FIRST THE VALUE OF FRACTIONS 1 AND 2!\n");
                     }else{
-                        System.out.println("Value of fraction 1: " + fraction1.toString());
-                        System.out.println("Value of fraction 2: " + fraction2.toString());
+                        System.out.println("Value of fraction 1: " + fraction1);
+                        System.out.println("Value of fraction 2: " + fraction2);
                         toReduce = fraction1.subFractions(fraction2);
                         System.out.print("Difference in Fraction: ");
                         toReduce.toStringOutput();
                         System.out.print("Difference in Decimal: ");
                         toReduce.convertToDecimal();
 
-                        availopt = true;
+                        availOpt = true;
                     }
                     break;
                 case 5:
-                    if (availfrac1 == false || availfrac2 == false){
+                    if (!availFrac1 || !availFrac2){
                         System.out.println("\nNOTE: PLEASE INPUT FIRST THE VALUE OF FRACTIONS 1 AND 2!\n");
 
                     }else{
-                        System.out.println("Value of fraction 1: " + fraction1.toString());
-                        System.out.println("Value of fraction 2: " + fraction2.toString());
+                        System.out.println("Value of fraction 1: " + fraction1);
+                        System.out.println("Value of fraction 2: " + fraction2);
                         toReduce = fraction1.multiplyFractions(fraction2);
                         System.out.print("Product in Fraction: ");
                         toReduce.toStringOutput();
                         System.out.print("Product in Decimal: ");
                         toReduce.convertToDecimal();
-                        availopt = true;
+                        availOpt = true;
                     }
                     break;
                 case 6:
-                    if (availfrac1 == false || availfrac2 == false){
+                    if (!availFrac1 || !availFrac2){
                         System.out.println("\nNOTE: PLEASE INPUT FIRST THE VALUE OF FRACTIONS 1 AND 2!\n");
                     }else{
-                        System.out.println("Value of fraction 1: " + fraction1.toString());
-                        System.out.println("Value of fraction 2: " + fraction2.toString());
+                        System.out.println("Value of fraction 1: " + fraction1);
+                        System.out.println("Value of fraction 2: " + fraction2
+                        );
                         toReduce = fraction1.divideFractions(fraction2);
                         System.out.print("Quotient in fraction: " );
                         toReduce.toStringOutput();
                         System.out.print("Quotient in Decimal: ");
                         toReduce.convertToDecimal();
-                        availopt = true;
+                        availOpt = true;
                     }
                     break;
                 case 7:
-                    if (availfrac1 == false || availfrac2 == false){
+                    if (!availFrac1 || !availFrac2){
                         System.out.println("\nNOTE: PLEASE INPUT FIRST THE VALUE OF FRACTIONS 1 AND 2!\n");
-                    }else if(availopt == false){
+                    }else if(!availOpt ){
                         System.out.println("\nNOTE: PLEASE CHOOSE AN OPERATION FIRST!\n");
                     }else{
-                        System.out.println("Value of fraction to be simplified: " + toReduce.toString());
+                        System.out.println("Value of fraction to be simplified: " + toReduce
+                        );
                         System.out.println();
                         if (toReduce.reduceFraction().getNumerator() == toReduce.reduceFraction().getDenominator())
                             System.out.print("Simplified value: 1" );
@@ -128,12 +129,30 @@ public class FractionArithmetic {
 
             }
 
-            if (choice > 8 || choice < 1) { //checks if the inputted number is within the given range
+            if (choice > 8 || choice < 0) { //checks if the inputted number is within the given range
                 System.out.println(choice + " is an INVALID INPUT!");
                 System.out.println("PLEASE INPUT A VALID CHOICE.");
             }
         } while (true);
 
+    }
+
+    private static int getUserChoice() {
+        Scanner scanner = new Scanner(System.in);
+        boolean isProblematic;
+        int choice = 0;
+        do {
+            try{
+                System.out.print("Enter choice: ");
+                choice = Integer.parseInt(scanner.next());
+                isProblematic = true;
+
+            }catch (NumberFormatException e){
+                System.out.println("Input a valid number!");
+               break;
+            }
+        }while (!isProblematic);
+        return choice;
     }
 }
 
