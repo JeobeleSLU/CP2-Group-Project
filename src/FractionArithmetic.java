@@ -139,19 +139,19 @@ public class FractionArithmetic   {
 
     private static int getUserChoice() {
         Scanner scanner = new Scanner(System.in);
-        boolean isProblematic;
+        boolean isProblematic= true;
         int choice = 0;
         do {
             try{
                 System.out.print("Enter choice: ");
                 choice = Integer.parseInt(scanner.next());
-                isProblematic = true;
+                isProblematic = false;
 
             }catch (NumberFormatException e){
                 System.out.println("Input a valid number!");
                break;
             }
-        }while (!isProblematic);
+        }while (isProblematic);
         return choice;
     }
 //ignore Comment

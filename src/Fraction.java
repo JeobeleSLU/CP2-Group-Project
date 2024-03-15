@@ -1,4 +1,5 @@
 
+
 import java.util.Scanner;
 
 //class file
@@ -178,33 +179,36 @@ public class Fraction {
 
     public void inputValues() {
         Scanner scanner = new Scanner(System.in);
-            boolean isCorrect = true;
+            boolean isProblematic = true;
             do {
                 try {
                     System.out.print("Enter value of numerator: ");
+
                     setNumerator(Integer.parseInt(scanner.next()));
-                    isCorrect = false;
+                    isProblematic = false;
 
                 }catch (NumberFormatException e){
                     System.out.println("You must enter a valid number!");
 
                 }
 
-            }while(isCorrect);
-            isCorrect = true;
+            }while(isProblematic);
+            isProblematic = true;
             int tmp = 0;
             do {
                 try {
                     System.out.print("Enter value of denominator: ");
                     tmp = Integer.parseInt(scanner.next());
-                    if (tmp == 0) {
-                        System.out.println("A denominator cannot be zero");
-                    }
-                    isCorrect = false;
+                    int num =getNumerator()/tmp;
+                    isProblematic = false;
                 }catch (NumberFormatException e){
                     System.out.println("Input a valid Number! ");
+                }catch (ArithmeticException e){
+                    System.out.println("Denominator cannot be zero");
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-            } while (tmp == 0 && isCorrect );
+            } while (isProblematic );
             setDenominator(tmp);
 
     }
